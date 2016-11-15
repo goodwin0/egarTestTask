@@ -1,0 +1,36 @@
+CREATE USER admin WITH password 'admin';
+CREATE DATABASE egarTest;
+GRANT ALL privileges ON DATABASE egarTest TO admin;
+
+CREATE TABLE Orders (
+    id integer NOT NULL PRIMARY KEY,
+    customersName varchar(40) NOT NULL,
+    customersAddress varchar(40) NOT NULL,
+    ordersValue integer NOT NULL,
+    ordersDate date NOT NULL
+    );
+
+CREATE TABLE Articles (
+  id integer NOT NULL PRIMARY KEY,
+  serialNumber varchar(40) NOT NULL,
+  name varchar(40) NOT NULL,
+  amount integer NOT NULL,
+  order_id integer REFERENCES Orders(id)
+);
+INSERT INTO Orders VALUES (1, 'Ivan', 'Samara, Novo-Sadovaya, 12', 12000, '31/12/16');
+INSERT INTO Orders VALUES (2, 'Petr', 'Moscow, Pushkinskaya, 122', 100, '2/12/16');
+INSERT INTO Orders VALUES (3, 'Sabir', 'Volgograd, Glavnaya, 3', 3430, '1/11/16');
+
+INSERT INTO Articles VALUES (1, 'e123', 'Paper', 200, 1);
+INSERT INTO Articles VALUES (2, 'a124', 'Audi', 1, 1);
+INSERT INTO Articles VALUES (3, 'e123', 'Flower', 3, 2);
+INSERT INTO Articles VALUES (4, 'e12', 'Bear', 33, 1);
+INSERT INTO Articles VALUES (5, 'a4', 'Guitar', 1, 1);
+INSERT INTO Articles VALUES (6, '1asd3', 'Flower', 3, 2);
+INSERT INTO Articles VALUES (7, 'e1dw', 'Human', 200, 1);
+INSERT INTO Articles VALUES (8, 'a12134', 'Jungle', 1, 1);
+INSERT INTO Articles VALUES (9, 'e12weq', 'Headphones', 3, 2);
+INSERT INTO Articles VALUES (10, 'edsx3', 'Paper', 200, 3);
+INSERT INTO Articles VALUES (11, 'a13', 'Audi', 1, 1);
+INSERT INTO Articles VALUES (12, 'e1213', 'Flower', 3, 2);
+

@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+    <title>JSf and Web Service</title>
+</h:head>
+<h:body>
+
+    <h:outputText value="#{show.time}"/>
+
+    <h:form id="form">
+        <p:dataTable   id="dataTable" var="tableElem" value="#{show.tableElements}" editable="true"
+                       rowKey="#{tableElem.order.id}">
+            <p:growl id="msgs" showDetail="true"/>
+
+            <p:ajax event="rowSelect" listener="#{show.onRowSelect}" update=":form:dataTable:msgs" />
+            <p:ajax event="rowUnselect" listener="#{show.onRowUnselect}" update=":form:dataTable:msgs" />
+
+            <p:column headerText="Id" width="10%">
+                <h:outputText value="#{tableElem.order.id}" />
+            </p:column>
+
+            <p:column headerText="Name" width="10%">
+                <h:outputText value="#{tableElem.order.customersName}" />
+            </p:column>
+
+            <p:column headerText="Address" width="10%">
+                <h:outputText value="#{tableElem.order.customersAddress}" />
+            </p:column>
+
+            <p:column headerText="Value" width="10%">
+                <h:outputText value="#{tableElem.order.value}" />
+            </p:column>
+
+            <p:column headerText="Date" width="10%">
+                <h:outputText value="#{tableElem.order.date}" />
+            </p:column>
+
+
+            <p:column headerText="123" width="50%">
+                <p:dataTable id="dataTable2" var="article" value="#{tableElem.articles}">
+                    <p:column headerText="Name">
+                        <h:outputText value="#{article.name}" />
+                    </p:column>
+                    <p:column headerText="Serial Number">
+                        <h:outputText value="#{article.serialNumber}" />
+                    </p:column>
+                    <p:column headerText="Amount">
+                        <h:outputText value="#{article.amount}" />
+                    </p:column>
+                </p:dataTable>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+
+</h:body>
+</html>
